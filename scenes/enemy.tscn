@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgmljuldlncjr"]
+
+[ext_resource type="Script" uid="uid://souljs0s6ud2" path="res://assets/scripts/Enemy.cs" id="1_tt7e2"]
+[ext_resource type="PackedScene" uid="uid://i6p8grhryvdg" path="res://assets/models/sheep.blend" id="2_55jtl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_s7bn3"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2hac7"]
+radius = 1.1
+
+[node name="Enemy" type="CharacterBody3D" groups=["stuffThatKillsYou"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_tt7e2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_s7bn3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_2hac7")
+
+[node name="Screenbox" type="VisibleOnScreenNotifier3D" parent="."]
+
+[node name="sheep" parent="." instance=ExtResource("2_55jtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.959572, -1.05417)
+
+[connection signal="screen_exited" from="Screenbox" to="." method="OnScreenExited"]

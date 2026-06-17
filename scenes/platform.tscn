@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmli0p6vhexwo"]
+
+[ext_resource type="PackedScene" uid="uid://byhgp6gbady1g" path="res://assets/models/grass.blend" id="2_wwpbi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orc8j"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ajho"]
+material = SubResource("StandardMaterial3D_orc8j")
+size = Vector3(15, 1, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mi635"]
+size = Vector3(15, 1, 15)
+
+[node name="platform" type="StaticBody3D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_5ajho")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_mi635")
+
+[node name="grass" parent="." instance=ExtResource("2_wwpbi")]
+transform = Transform3D(1, 0, 0, 0, 0.66, 0, 0, 0, 1, -0.398235, -0.490847, 0)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://calpk8oe7o66e"]
+
+[ext_resource type="PackedScene" uid="uid://cgthvkuws6nt4" path="res://assets/models/monkeyball.blend" id="1_pffug"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_veuq5"]
+size = Vector3(2.24634, 2.52539, 2.39258)
+
+[node name="Monkeyball" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_veuq5")
+
+[node name="monkeyball" parent="." instance=ExtResource("1_pffug")]

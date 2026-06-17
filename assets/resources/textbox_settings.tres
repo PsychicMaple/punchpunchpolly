@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://bhqlbtanxhbe"]
+
+[ext_resource type="FontFile" uid="uid://vouadewcjnnr" path="res://assets/fonts/PopJoy.otf" id="1_8jw33"]
+
+[resource]
+line_spacing = 7.0
+font = ExtResource("1_8jw33")
+font_size = 30
+outline_color = Color(0, 0, 0, 1)

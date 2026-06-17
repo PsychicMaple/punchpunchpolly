@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://dvaeexoy13td4"]
+
+[ext_resource type="PackedScene" uid="uid://qossu385y52r" path="res://scenes/transfer_point.tscn" id="3_tefeu"]
+[ext_resource type="PackedScene" uid="uid://bmli0p6vhexwo" path="res://scenes/platform.tscn" id="5_trceg"]
+[ext_resource type="PackedScene" uid="uid://csd473wuedtgr" path="res://scenes/killbox.tscn" id="6_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://ce68dsyca11hx" path="res://scenes/npc.tscn" id="7_jkv2x"]
+[ext_resource type="SpriteFrames" uid="uid://cydheoewtfpy3" path="res://assets/resources/brainward.tres" id="8_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://bica83p1acyqt" path="res://scenes/paper.tscn" id="9_muem4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jlsqs"]
+sky_top_color = Color(3.08037e-06, 0.718588, 0.977482, 1)
+sky_curve = 0.0315336
+ground_bottom_color = Color(3.36915e-06, 0.60049, 0.820067, 1)
+ground_curve = 0.00615573
+
+[sub_resource type="Sky" id="Sky_q8u5g"]
+sky_material = SubResource("ProceduralSkyMaterial_jlsqs")
+
+[sub_resource type="Environment" id="Environment_lhr70"]
+background_mode = 2
+background_color = Color(0.429924, 0.000149446, 0.438956, 1)
+sky = SubResource("Sky_q8u5g")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
+size = Vector3(6, 1, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tefeu"]
+size = Vector3(6, 1, 4)
+
+[node name="Main" type="Node" unique_id=1606533017]
+process_mode = 1
+
+[node name="Env" type="Node3D" parent="." unique_id=1890592701]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env" unique_id=579508545]
+transform = Transform3D(0.848391, 0.156216, -0.505796, 0.286447, 0.668031, 0.686791, 0.445175, -0.727551, 0.522004, -17.9302, 14.1483, 3.52045)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env" unique_id=2072612222]
+environment = SubResource("Environment_lhr70")
+
+[node name="Platform" parent="Env" unique_id=1095489571 instance=ExtResource("5_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Killbox" parent="Env" unique_id=1341269155 instance=ExtResource("6_a8y0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="Transfer" type="Node3D" parent="." unique_id=2107681727]
+
+[node name="to-test2" type="StaticBody3D" parent="Transfer" unique_id=1659400189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.500107, -0.5, 5.49386)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Transfer/to-test2" unique_id=1253185101]
+shape = SubResource("BoxShape3D_tbgi4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Transfer/to-test2" unique_id=304932345]
+mesh = SubResource("BoxMesh_tefeu")
+
+[node name="TransferPoint" parent="Transfer/to-test2" unique_id=1238173657 instance=ExtResource("3_tefeu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.5001068, 1, 0.006140232)
+transferX = -6.5
+transferY = 1.0
+transferZ = 5.5
+transferScene = "res://scenes//test_2.tscn"
+
+[node name="NPC" type="Node3D" parent="." unique_id=2107805596]
+
+[node name="Brainward" parent="NPC" unique_id=42003242 instance=ExtResource("7_jkv2x")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.467009, 1.7887995, -0.45378458)
+NPC_sprite = ExtResource("8_jbj1t")
+text_block = "brainward"
+
+[node name="npc bruh!" parent="NPC" unique_id=1326891296 instance=ExtResource("7_jkv2x")]
+transform = Transform3D(0.916356, 0, -0.400365, 0, 1, 0, 0.400365, 0, 0.916356, -2.63839, 1.9287, -3.67176)
+
+[node name="Paper" parent="." unique_id=577600217 instance=ExtResource("9_muem4")]
+transform = Transform3D(0.809222, -3.35276e-08, -0.587503, -4.47035e-08, 1, 0, 0.587503, 0, 0.809222, 0, 0, 0)
+collision_mask = 14
+
+[node name="CamPivot" type="Node3D" parent="Paper" unique_id=635193598]
+transform = Transform3D(1, 0, 0, 0, 0.614725, -0.788741, 0, 0.788741, 0.614725, 0, 0.13909, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Paper/CamPivot" unique_id=587189101]
+transform = Transform3D(1, 0, 0, 0, 0.465769, 0.884906, 0, -0.884906, 0.465769, 1.19209e-07, 8.98874, 4.65789)
+fov = 52.2
+size = 7.51
